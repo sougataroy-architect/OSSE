@@ -1,0 +1,28 @@
+//  This will Zip the folder, ZipPath will be the folder path that needs to be zipped, CopyPath is where you want the zipped folder to be saved
+
+        public static void ZiptheFile(string ZipPath, string CopyPath)
+        {
+          
+            //var zipFile = @"C:\pics\myzip.zip";
+          
+            var zipFile = @CopyPath + "\\myzip.zip";
+            
+            // var files = Directory.GetFiles(@"C:\pics\BA500_Assignment1");
+            var files = Directory.GetFiles(@ZipPath);
+
+            using (var archive = ZipFile.Open(zipFile, ZipArchiveMode.Create))
+            {
+                foreach (var fPath in files)
+                {
+                    archive.CreateEntryFromFile(fPath, Path.GetFileName(fPath));
+                }
+            }
+        }
+
+
+
+// How to call:
+string pathToZip =  "C:\\pics";
+string pathWhereToCopy =  "C:\\pics\\BA500_Assignment1";
+ZiptheFile(pathToZip, pathWhereToCopy);
+
